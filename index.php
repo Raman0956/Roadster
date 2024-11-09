@@ -69,7 +69,7 @@ $categories = $carController->getCarCategories();
         <div class="col-12 col-md-8">
             <div class="position-relative">
                 <img id="carouselImage" src="images/<?= htmlspecialchars($allCars[0]['make']) ?>.png" alt="Car Image" class="img-fluid">
-                <div class="carousel-buttons position-absolute top-50 start-50 translate-middle">
+                <div class="carousel-buttons justify-content-center">
                     <button class="btn btn-dark" onclick="changeImage(-1)">&#10094;</button>
                     <button class="btn btn-dark" onclick="changeImage(1)">&#10095;</button>
                 </div>
