@@ -4,7 +4,7 @@ class CarModel {
 
     public function __construct() {
         // Assuming a database connection setup here
-        $this->db = new PDO("mysql:host=localhost;dbname=roadster", "username", "password");
+        $this->db = new PDO("mysql:host=localhost;dbname=roadster", "root", "");
     }
 
     public function getAllCars() {

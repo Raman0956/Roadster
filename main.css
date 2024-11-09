@@ -1,0 +1,57 @@
+/* Basic styling */
+body { font-family: Arial, sans-serif; margin: 0; padding: 20px; }
+.category-filter, .carousel { margin-bottom: 20px; }
+
+/* Styling for categories */
+.category { display: inline-block; padding: 10px 15px; background-color: #007bff; color: white; margin: 5px; border-radius: 5px; cursor: pointer; text-decoration: none; }
+.category:hover { background-color: #0056b3; }
+
+/* Carousel styling */
+.carousel { display: flex; overflow-x: auto; padding: 20px; border: 1px solid #ddd; border-radius: 5px; }
+.car-card { flex: 0 0 auto; width: 200px; margin-right: 15px; padding: 10px; border: 1px solid #ddd; border-radius: 5px; text-align: center; }
+.car-card img { max-width: 100%; height: auto; border-radius: 5px; }
+
+/* Basic Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Navbar styling */
+nav {
+    background-color: #007bff;
+    padding: 10px 0;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+nav ul li {
+    display: inline;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    padding: 10px 15px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+nav ul li a:hover {
+    background-color: #0056b3;
+    border-radius: 5px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    nav ul {
+        flex-direction: column;
+        gap: 10px;
+    }
+}

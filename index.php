@@ -1,6 +1,7 @@
 <?php
 require_once 'controllers/CarController.php';
 
+
 // Instantiate the controller
 $carController = new CarController();
 
@@ -18,24 +19,16 @@ $categories = $carController->getCarCategories();
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Car Dealership</title>
+    <title>Car Dealership</title><link rel="stylesheet" type="text/css"
+    href="main.css">
     <style>
-        /* Basic styling */
-        body { font-family: Arial, sans-serif; margin: 0; padding: 20px; }
-        .category-filter, .carousel { margin-bottom: 20px; }
         
-        /* Styling for categories */
-        .category { display: inline-block; padding: 10px 15px; background-color: #007bff; color: white; margin: 5px; border-radius: 5px; cursor: pointer; text-decoration: none; }
-        .category:hover { background-color: #0056b3; }
-
-        /* Carousel styling */
-        .carousel { display: flex; overflow-x: auto; padding: 20px; border: 1px solid #ddd; border-radius: 5px; }
-        .car-card { flex: 0 0 auto; width: 200px; margin-right: 15px; padding: 10px; border: 1px solid #ddd; border-radius: 5px; text-align: center; }
-        .car-card img { max-width: 100%; height: auto; border-radius: 5px; }
     </style>
 </head>
 <body>
     <h1>Welcome to Our Car Dealership</h1>
+
+    <?php require_once 'views/navbar.php'; ?>
 
     <!-- Category Filter -->
     <div class="category-filter">
