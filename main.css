@@ -1,0 +1,147 @@
+/* Basic styling */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #f0f0f0; /* Light gray background for a minimalist look */
+}
+
+/* Main heading styling */
+.main_heading {
+    text-align: center;
+    font-size: 1.8rem;
+    color: #333;
+    margin-bottom: 20px;
+    font-weight: 600; /* Slightly bolder for emphasis */
+}
+
+/* Category filter section */
+.car-categories {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    justify-content: center;
+    flex-wrap: wrap; /* Allow categories to wrap on small screens */
+}
+
+.category-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.category-item img {
+    width: 40px;
+    height: auto;
+    margin-bottom: 5px;
+}
+
+.category {
+    padding: 8px 12px;
+    background-color: #333;
+    color: white;
+    border-radius: 3px;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+.category:hover {
+    background-color: #052a51;
+}
+
+/* Carousel styling */
+.carousel {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding: 10px;
+    border-radius: 3px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.car-card {
+    flex: 0 0 auto;
+    width: 180px;
+    margin-right: 10px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #fff;
+    text-align: center;
+}
+
+.car-card img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 3px;
+}
+
+/* Single image carousel at the bottom */
+.image-carousel {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.image-carousel img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 3px;
+    width: 400px; /* Adjust the width as necessary */
+}
+
+/* Navbar styling */
+nav {
+    padding: 10px;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+}
+
+nav ul li {
+    display: inline;
+}
+
+nav ul li a {
+    color: #333;
+    text-decoration: none;
+    padding: 8px 12px;
+    font-size: 14px;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+    border-radius: 3px;
+}
+
+nav ul li a:hover {
+    background-color: #0a0828;
+    color: white;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    nav ul {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .car-categories {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .carousel {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .car-card {
+        width: 150px;
+    }
+}
