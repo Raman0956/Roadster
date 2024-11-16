@@ -1,19 +1,21 @@
 <?php
-require_once 'controllers/CarController.php';
+require_once '../roadsters/controllers/CarController.php';
 
-// Instantiate the controller
+$action = $_GET['action'] ?? 'browseCars'; // Default action is browseCars
+
 $carController = new CarController();
 
-// Get the selected category from the query parameter (if any)
-if (isset($_GET['category'])) {
-    $selectedCategory = $_GET['category'];
-    $carouselDisplay = 'flex'; // Show carousel when a category is selected
-} else {
-    $selectedCategory = null;
-    $carouselDisplay = 'none'; // Hide carousel when no category is selected
+switch ($action) {
+    case 'browseCars':
+        $carController->browseCars();
+        break;
+    
 }
 
-// Get cars based on the selected category or all cars if no category is selected
+// Get the selected category from the query parameter (if any)
+$selectedCategory = $_GET['category'] ?? null;
+
+// Get cars based on the selected category or fetch all cars if no category is selected
 if ($selectedCategory) {
     $allCars = $carController->filterByCategory($selectedCategory);
 } else {
@@ -48,22 +50,24 @@ $categories = $carController->getCarCategories();
 </div>
 
 <!-- Car Carousel -->
-<div id="carCarousel" class="carousel row" style="display: <?= htmlspecialchars($carouselDisplay) ?>;">
+<div id="carCarousel" class="carousel row">
     <?php foreach ($allCars as $car): ?>
         <div class="col-md-4 mb-4">
-            <div class="card">
-                <img src="images/<?= htmlspecialchars($car['make']) ?>.png" alt="<?= htmlspecialchars($car['make'] . ' ' . $car['model']) ?>" class="card-img-top">
-                <div class="card-body">
-                    <h5 class="card-title"><?= htmlspecialchars($car['make'] . ' ' . $car['model']) ?></h5>
-                    <p class="card-text">Year: <?= htmlspecialchars($car['year']) ?></p>
-                    <p class="card-text">Price: $<?= htmlspecialchars(number_format($car['price'], 2)) ?></p>
+            <a href="views/cars/viewCar.php?carID=<?= htmlspecialchars($car['carID']); ?>" class="card-link" style="text-decoration: none; color: inherit;">
+                <div class="card">
+                    <img src="images/<?= htmlspecialchars($car['make']) ?>.png" alt="<?= htmlspecialchars($car['make'] . ' ' . $car['model']) ?>" class="card-img-top">
+                    <div class="card-body">
+                        <h5 class="card-title"><?= htmlspecialchars($car['make'] . ' ' . $car['model']) ?></h5>
+                        <p class="card-text">Year: <?= htmlspecialchars($car['year']); ?></p>
+                        <p class="card-text">Price: $<?= htmlspecialchars(number_format($car['price'], 2)) ?></p>
+                    </div>
                 </div>
-            </div>
+            </a>
         </div>
     <?php endforeach; ?>
 </div>
 
-<!-- Single Image Carousel at the Bottom -->
+<!-- Single Image Carousel -->
 <div class="container my-4">
     <div class="row justify-content-center">
         <div class="col-12 col-md-8">
@@ -79,9 +83,9 @@ $categories = $carController->getCarCategories();
 </div>
 
 <script>
-    // Initial settings
-    var currentImageIndex = 0;
-    var carImages = <?php echo json_encode(array_column($allCars, 'make')); ?>; // Get car makes
+    // JavaScript for image carousel
+    let currentImageIndex = 0;
+    const carImages = <?= json_encode(array_column($allCars, 'make')); ?>;
 
     function changeImage(direction) {
         currentImageIndex += direction;
@@ -92,13 +96,4 @@ $categories = $carController->getCarCategories();
         }
         document.getElementById("carouselImage").src = "images/" + carImages[currentImageIndex] + ".png";
     }
-
-    // Show carousel when a category link is clicked
-    var categoryLinks = document.querySelectorAll('.category');
-    categoryLinks.forEach(function(link) {
-        link.addEventListener('click', function() {
-            document.getElementById("carCarousel").style.display = 'flex';  // Show the carousel
-        });
-    });
 </script>
-
