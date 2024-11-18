@@ -16,6 +16,19 @@ class CarModel {
         $stmt = $this->db->query("SELECT DISTINCT category FROM carinventory");
         return $stmt->fetchAll(PDO::FETCH_COLUMN);
     }
+    public function getCarMakes() {
+        $stmt = $this->db->query("SELECT DISTINCT make FROM carinventory");
+        return $stmt->fetchAll(PDO::FETCH_COLUMN);
+    }
+    public function getCarModels() {
+        $stmt = $this->db->query("SELECT DISTINCT model FROM carinventory");
+        return $stmt->fetchAll(PDO::FETCH_COLUMN);
+    }
+    public function getCarYears() {
+        $stmt = $this->db->query("SELECT DISTINCT year FROM carinventory");
+        return $stmt->fetchAll(PDO::FETCH_COLUMN);
+    }
+
 
     public function getCarsByCategory($category) {
         $stmt = $this->db->prepare("SELECT * FROM carinventory WHERE category = :category");

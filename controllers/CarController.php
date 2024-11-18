@@ -47,6 +47,18 @@ class CarController {
 
     }
 
+    public function getSearchFilters() {
+        $allMakes = $this->carModel->getCarMakes();
+        $allModels = $this->carModel->getCarModels();
+        $allYears = $this->carModel->getCaryears();
+        
+        return [
+            'makes' => $allMakes,
+            'models' => $allModels,
+            'years' => $allYears
+        ];
+    }
+    
 
     public function viewCar() {
         // Get the carID from the query parameter

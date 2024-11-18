@@ -4,10 +4,12 @@ require_once '../../controllers/CarController.php';
 $action = $_GET['action'] ?? 'browseCars'; // Default action is browseCars
 
 $carController = new CarController();
+$carModel = new CarModel();
 
 switch ($action) {
     case 'browseCars':
         $cars = $carController->browseCars();
+        $filters = $carController->getSearchFilters();
         break;
     
 }
@@ -25,28 +27,55 @@ switch ($action) {
 
 
 <h2>Search Cars</h2>        
-
+<div class="search_row">
 <!-- Filter Form -->
 <form method="GET" action="">
     <input type="hidden" name="action" value="browseCars">
     <label for="make">Make:</label>
-    <input type="text" id="make" name="make" value="<?php echo htmlspecialchars($_GET['make'] ?? ''); ?>">
+    <select id="make" class="form-control form-select mb-4"  name="make">
+        <option value="">All</option>
+        <?php foreach ($filters['makes'] as $make): ?>
+            <option value="<?php echo htmlspecialchars($make); ?>" <?php echo (isset($_GET['make']) && $_GET['make'] == $make) ? 'selected' : ''; ?>>
+                <?php echo htmlspecialchars($make); ?>
+            </option>
+        <?php endforeach; ?>
+    </select>
     
+    <!-- Model Select -->
     <label for="model">Model:</label>
-    <input type="text" id="model" name="model" value="<?php echo htmlspecialchars($_GET['model'] ?? ''); ?>">
+    <select class="form-select"  id="model" name="model">
+        <option value="">All</option>
+        <?php foreach ($filters['models'] as $model): ?>
+            <option value="<?php echo htmlspecialchars($model); ?>" <?php echo (isset($_GET['model']) && $_GET['model'] == $model) ? 'selected' : ''; ?>>
+                <?php echo htmlspecialchars($model); ?>
+            </option>
+        <?php endforeach; ?>
+    </select>
     
+    <!-- Year Select -->
     <label for="year">Year:</label>
-    <input type="text" id="year" name="year" value="<?php echo htmlspecialchars($_GET['year'] ?? ''); ?>">
+    <select class="form-select" id="year" name="year">
+        <option value="">All</option>
+        <?php foreach ($filters['years'] as $year): ?>
+            <option value="<?php echo htmlspecialchars($year); ?>" <?php echo (isset($_GET['year']) && $_GET['year'] == $year) ? 'selected' : ''; ?>>
+                <?php echo htmlspecialchars($year); ?>
+            </option>
+        <?php endforeach; ?>
+    </select>
     
+    <!-- Price Min Input -->
     <label for="price_min">Price Min:</label>
-    <input type="number" id="price_min" name="price_min" value="<?php echo htmlspecialchars($_GET['price_min'] ?? 1000); ?>">
+    <input  type="number" id="price_min" name="price_min" value="<?php echo htmlspecialchars($_GET['price_min'] ?? 1000); ?>">
     
+    <!-- Price Max Input -->
     <label for="price_max">Price Max:</label>
     <input type="number" id="price_max" name="price_max" value="<?php echo htmlspecialchars($_GET['price_max'] ?? 100000); ?>">
 
-    
     <button class="btn-stndrd">Search</button>
+
+    </div>
 </form>
+
 
 <!-- Display Cars -->
 <?php if (!empty($cars)): ?>

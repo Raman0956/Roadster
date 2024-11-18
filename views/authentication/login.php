@@ -1,20 +1,12 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Login</title>
-    <!-- Include Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body>
-<?php require_once '../navbar.php'; ?>
+<?php require_once '../../views/header.php'; ?>
 
 <section class="vh-100 bg-custom">
-  <div class="container py-8 h-100">
+  <div class="container">
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="col col-xl-10 p-2">
         <div class="rounded-card">
           <div class="row g-0">
-            <div class="col-md-6 col-lg-5 d-none d-md-block">
+            <div class="col-md-6 col-lg-5 mt-5 d-md-block">
               <img src="/roadsters/images/signIn.png" alt="login form" class="img-fluid rounded-img" />
             </div>
             <div class="col-md-6 col-lg-7 d-flex align-items-center">
@@ -34,7 +26,7 @@
                   </div>
 
                   <div class="pt-1 mb-4">
-                    <button class="btn btn-dark btn-block" type="submit">Login</button>
+                    <button class="btn-stndrd" type="submit">Login</button>
                   </div>
 
                 </form>

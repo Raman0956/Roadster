@@ -11,10 +11,6 @@
     <link rel="stylesheet" type="text/css" href="/roadsters/main.css">
 </head>
 <body>
-    <!-- Main heading section -->
-    <div class="text-center my-4">
-        <h2>Welcome to Roadsters</h2>
-    </div>
 
     <?php require_once 'navbar.php'; ?>
 

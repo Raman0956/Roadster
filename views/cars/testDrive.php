@@ -1,12 +1,6 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Book a Test Drive</title>
-    <!-- Include Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body>
-<?php require_once 'C:/xampp/htdocs/roadsters/views/header.php'; 
+<?php 
+
+require_once 'C:/xampp/htdocs/roadsters/views/header.php'; 
 
 // Get car details from query parameters
 $carID = $_GET['carID'] ?? '';
@@ -43,9 +37,15 @@ $model = $_GET['model'] ?? '';
             <label for="preferredTime" class="form-label">Preferred Time</label>
             <input type="time" id="preferredTime" name="preferredTime" class="form-control" required>
         </div>
-        <button type="submit" class="btn btn-primary w-100">Book Test Drive</button>
+        <div class="d-flex justify-content-center" >
+            
+        <button type="submit" class="btn-stndrd mt-2">Book Test Drive</button>
+        </div>
     </form>
 </div>
+
+
+<?php require_once '../footer.php'; ?>
 
 <!-- Include Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

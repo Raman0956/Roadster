@@ -187,6 +187,10 @@ body {
     border-bottom: 1px solid #ddd;
 }
 
+.car-idni{
+    max-height: fit-content;
+}
+
 .category-btn {
     font-size: 14px;
     border-radius: 5px;
@@ -227,7 +231,9 @@ form label {
 }
 
 form input[type="text"],
-form input[type="number"] {
+form input[type="number"],
+form input[type="password"],
+form input[type="email"] {
     padding: 10px;
     margin-bottom: 15px;
     border: 1px solid #ccc; /* Light gray border */
@@ -352,14 +358,54 @@ form button:focus {
     margin-top: 20px;
 }
 
-.btn-stndrd{
+.btn-stndrd {
     background-color: black;
     color: white;
+    border: 2px solid black; /* Creates a border for better visibility */
+    padding: 10px 20px; /* Adds padding for a more prominent button */
+    border-radius: 5px; /* Rounds the corners slightly */
+    font-size: 16px; /* Increases text size for better readability */
+    cursor: pointer; /* Changes cursor to pointer on hover */
+    transition: all 0.3s ease; /* Smooth transition for hover effect */
+}
+
+.btn-stndrd:hover {
+    background-color: white;
+    color: black;
+    border-color: black; /* Retains the border color on hover */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Adds a subtle shadow effect */
+}
+
+.btn-stndrd:active {
+    transform: scale(0.95); /* Adds a slight "press" effect on click */
+}
+
+.btn-login:hover{
+    max-height: 100px;
+}
+
+.img_logo {
+    height: 100px;
+    background-size: cover !important;
 }
 
 
-.btn-login:hover{
-    background-color: #333;
+.form-select{
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc; /* Light gray border */
+    border-radius: 5px;
+    background-color: #f9f9f9; /* Light background for input fields */
+    color: #333; /* Dark text for input */
+    font-size: 14px;
+    transition: border-color 0.3s ease;
+    display: inline-flex;
+    width: 150px;
+}
+
+.navbar {
+    border-bottom: 2px solid #ccc; /* Adjust color and thickness as needed */
+    padding-bottom: 10px;         /* Optional: Adds spacing for a cleaner look */
 }
 
 /* Responsive Adjustments */

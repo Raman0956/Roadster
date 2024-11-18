@@ -1,23 +1,16 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Register</title>
-    <!-- Include Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body>
-<?php require_once '../navbar.php'; ?>
-<section class="vh-100 bg-custom">
-  <div class="container py-8 h-100">
-    <div class="row d-flex justify-content-center align-items-center h-100">
+<?php require_once '../../views/header.php'; ?>
+
+<section class="vh-100">
+  <div class="container">
+    <div class="row d-flex justify-content-center align-items-center">
       <div class="col col-xl-10 p-2">
         <div class="rounded-card">
           <div class="row g-0">
-            <div class="col-md-6 col-lg-5 d-none d-md-block">
+            <div class="col-md-6 col-lg-5 mt-5 d-md-block">
               <img src="/roadsters/images/register.png" alt="register form" class="img-fluid rounded-img" />
             </div>
             <div class="col-md-6 col-lg-7 d-flex align-items-center">
-              <div class="card-body p-4 p-lg-5 text-black">
+              <div class="card-body  text-black">
 
                 <form method="POST" action="/roadsters/controllers/AuthController.php?action=register" class="needs-validation" novalidate>
                   <h5 class="fw-normal mb-3 pb-3 form-title">Create an account</h5>
@@ -40,7 +33,7 @@
                   </div>
 
                   <div class="form-outline mb-4">
-                    <select id="role" name="role" class="form-select form-control-lg" required>
+                    <select id="role" name="role" class="form-select form-control-lg d-flex justify-content-start" required>
                       <option value="Client">Client</option>
                       <option value="Admin">Admin</option>
                     </select>
@@ -48,7 +41,7 @@
                   </div>
 
                   <div class="pt-1 mb-4">
-                    <button type="submit" class="btn btn-dark btn-block">Register</button>
+                    <button type="submit" class="btn-stndrd">Register</button>
                   </div>
 
                 </form>
