@@ -38,7 +38,7 @@ $baseURL = '/roadsters';
                     <a class="nav-link" href="<?= $baseURL; ?>/views/services/list.php">Services</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="<?= $baseURL; ?>/contact.php">Contact Us</a>
+                    <a class="nav-link" href="<?= $baseURL; ?>/views/contact_us.php">Contact Us</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="<?= $baseURL; ?>/views/login.php">Login</a>

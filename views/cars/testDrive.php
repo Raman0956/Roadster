@@ -1,3 +1,27 @@
+<?php 
+session_start();
+
+// Check if the user is logged in
+if (!isset($_SESSION['userID'])) {
+    $redirectUrl = urlencode($_SERVER['REQUEST_URI']);
+    header("Location: /roadsters/views/login.php?redirect=$redirectUrl");
+    exit();
+}
+
+// Proceed with booking a test drive
+require_once 'C:/xampp/htdocs/roadsters/models/CarModel.php';
+require_once 'C:/xampp/htdocs/roadsters/views/header.php'; 
+
+// Get logged-in username
+$username = $_SESSION['username'] ?? 'Guest';
+
+// Get car details from query parameters
+$carID = $_GET['carID'] ?? '';
+$make = $_GET['make'] ?? '';
+$model = $_GET['model'] ?? '';
+?>
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,21 +30,16 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-<?php require_once 'C:/xampp/htdocs/roadsters/views/header.php'; 
 
-// Get car details from query parameters
-$carID = $_GET['carID'] ?? '';
-$make = $_GET['make'] ?? '';
-$model = $_GET['model'] ?? '';
-?>
 
 <div class="container mt-5">
 <h2 class="text-center">Book a Test Drive</h2>
     <form method="POST" action="/roadsters/controllers/TestDriveController.php?action=bookTestDrive" class="needs-validation" novalidate>
         <div class="row mb-3">
-            <div class="col-md-6">
-                <label for="username" class="form-label">User ID</label>
-                <input type="text" id="username" name="username" class="form-control" required>
+        <div class="col-md-6">
+                <label for="username" class="form-label">Logged-In User</label>
+                <input type="hidden" id="userID" name="userID" value="<?= htmlspecialchars($_SESSION['userID']) ?>">
+                <input type="text" id="username" name="username" value="<?= htmlspecialchars($username) ?>" class="form-control" readonly>
             </div>
             <div class="col-md-6">
                 <label for="carID" class="form-label">Stock ID</label>

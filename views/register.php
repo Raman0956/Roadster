@@ -35,7 +35,7 @@
         <button type="submit" class="btn btn-primary w-100">Register</button>
     </form>
     <div class="text-center mt-3">
-        <a href="/roadsters/views/auth/login.php" class="btn btn-secondary w-100">Back to Login</a>
+        <a href="login.php" class="btn btn-secondary w-100">Back to Login</a>
     </div>
 </div>
 

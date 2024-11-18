@@ -8,7 +8,7 @@
 <body>
 <div class="container mt-5">
     <h2 class="text-center">Login</h2>
-    <form method="POST" action="/roadsters/controllers/AuthController.php?action=login" class="needs-validation" novalidate>
+    <form method="POST" action="/roadsters/controllers/AuthController.php?action=login<?php echo isset($_GET['redirect']) ? '&redirect=' . urlencode($_GET['redirect']) : ''; ?>" class="needs-validation" novalidate>
         <div class="mb-3">
             <label for="username" class="form-label">Username</label>
             <input type="text" id="username" name="username" class="form-control" required>

@@ -1,6 +1,10 @@
 <?php
 require_once 'C:/xampp/htdocs/roadsters/models/UserModel.php';
 
+$_SESSION['userID'] = $user['userID'];
+$_SESSION['username'] = $user['username'];
+
+
 class AuthController {
     private $userModel;
 
@@ -25,7 +29,10 @@ class AuthController {
                 $_SESSION['userID'] = $user['userID'];
                 $_SESSION['username'] = $user['username'];
                 $_SESSION['role'] = $user['role'];
-                header('Location: /roadsters/index.php');
+
+                // Redirect back to the original page
+                $redirect = $_GET['redirect'] ?? '/roadsters/index.php';
+                header("Location: $redirect");
                 exit();
             } else {
                 echo "Invalid username or password.";

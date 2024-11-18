@@ -1,4 +1,6 @@
 <?php
+
+session_start();
 require_once 'C:/xampp/htdocs/roadsters/models/CarModel.php';
 require_once 'C:/xampp/htdocs/roadsters/views/header.php';
 
@@ -18,6 +20,9 @@ if (!$car) {
     echo "Car not found.";
     exit;
 }
+
+// Get current URL for redirect
+$currentUrl = urlencode($_SERVER['REQUEST_URI']);
 ?>
 
 <!DOCTYPE html>
@@ -38,8 +43,12 @@ if (!$car) {
         <p>Category: <?= htmlspecialchars($car['category']); ?></p>
         <p>Lease Option: <?= $car['leaseOption'] ? 'Available' : 'Not Available'; ?></p>
         <p>Finance Option: <?= $car['financeOption'] ? 'Available' : 'Not Available'; ?></p>
-        <button class="btn btn-primary" onclick="location.href='/roadsters/views/cars/testDrive.php?carID=<?= $car['carID'] ?>&make=<?= urlencode($car['make']) ?>&model=<?= urlencode($car['model']) ?>'">Book a Test Drive</button>
 
+        <?php if (isset($_SESSION['userID'])): ?>
+                <button class="btn btn-primary" onclick="location.href='/roadsters/views/cars/testDrive.php?carID=<?= $car['carID'] ?>&make=<?= urlencode($car['make']) ?>&model=<?= urlencode($car['model']) ?>'">Book a Test Drive</button>
+            <?php else: ?>
+                <button class="btn btn-secondary" onclick="location.href='/roadsters/views/login.php?redirect=/roadsters/views/cars/testDrive.php?carID=<?= $car['carID'] ?>&make=<?= urlencode($car['make']) ?>&model=<?= urlencode($car['model']) ?>'">Login to Book</button>
+            <?php endif; ?>
 
         <button class="btn btn-primary">Send Inquiry </button> 
     </div>

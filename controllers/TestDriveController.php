@@ -11,7 +11,8 @@ class TestDriveController {
     public function bookTestDrive() {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Retrieve and sanitize input
-            $userID = htmlspecialchars(trim($_POST['username'] ?? ''));
+            $userID = $_POST['userID'];
+            $username = htmlspecialchars(trim($_POST['username'] ?? ''));
             $carID = htmlspecialchars(trim($_POST['carID'] ?? ''));
             $make = htmlspecialchars(trim($_POST['make'] ?? ''));
             $model = htmlspecialchars(trim($_POST['model'] ?? ''));
