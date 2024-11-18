@@ -60,6 +60,7 @@ body {
     border-radius: 3px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     height: 100%;
+    align-items: start;
 }
 
 #carCarousel {
@@ -121,9 +122,6 @@ body {
     margin-top: 20px;
 }
 
-.row {
-    justify-content: center; /* Center-align the rows */
-}
 
 /* Category Cards */
 .card {
