@@ -1,4 +1,6 @@
 <?php
+
+session_start();
 require_once 'C:/xampp/htdocs/roadsters/models/CarModel.php';
 require_once 'C:/xampp/htdocs/roadsters/views/header.php';
 
@@ -18,9 +20,12 @@ if (!$car) {
     echo "Car not found.";
     exit;
 }
+
 ?>
 
 <?php require_once '../navbar.php'; ?>
+
+
 
 
 <div class="container text-center">
@@ -33,8 +38,11 @@ if (!$car) {
         <p class="p-4">Category: <?= htmlspecialchars($car['category']); ?></p>
         <p class="p-4">Lease Option: <?= $car['leaseOption'] ? 'Available' : 'Not Available'; ?></p>
         <p class="p-4">Finance Option: <?= $car['financeOption'] ? 'Available' : 'Not Available'; ?></p>
-        <button class="btn-stndrd" onclick="location.href='/roadsters/views/cars/testDrive.php?carID=<?= $car['carID'] ?>&make=<?= urlencode($car['make']) ?>&model=<?= urlencode($car['model']) ?>'">Book a Test Drive</button>
-
+        <?php if (isset($_SESSION['userID'])): ?>
+                <button class="btn-stndrd" onclick="location.href='/roadsters/views/cars/testDrive.php?carID=<?= $car['carID'] ?>&make=<?= urlencode($car['make']) ?>&model=<?= urlencode($car['model']) ?>'">Book a Test Drive</button>
+            <?php else: ?>
+                <button class="btn-stndrd" onclick="location.href='/roadsters/views/authentication/login.php?redirect=/roadsters/views/cars/testDrive.php?carID=<?= $car['carID'] ?>&make=<?= urlencode($car['make']) ?>&model=<?= urlencode($car['model']) ?>'">Login to Book</button>
+            <?php endif; ?>
 
         <button class="btn-stndrd">Send Inquiry </button> 
     </div>

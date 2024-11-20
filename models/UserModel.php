@@ -39,7 +39,7 @@ class UserModel {
         $stmt->execute();
         return $stmt->fetchColumn() > 0; // Returns true if username exists
     }
-    
-    
+
 }
+
 ?>

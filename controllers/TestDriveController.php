@@ -30,7 +30,7 @@ class TestDriveController {
 
             if ($success) {
                 // Redirect to success page
-                header('Location: /roadsters/views/test_drive/success.php');
+                header('Location: /roadsters/views/cars/confirmation.php');
                 exit();
             } else {
                 echo "Failed to book the test drive. Please try again.";

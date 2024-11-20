@@ -14,15 +14,7 @@ switch ($action) {
     
 }
 
-?>
-
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Search Cars</title>
-</head>
-<body>
-<?php require_once '../../views/header.php'; ?>
+require_once '../../views/header.php'; ?>
 
 
 

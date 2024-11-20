@@ -2,6 +2,11 @@
 // Base URL of your project
 global $baseURL;
 $baseURL = '/roadsters';
+if (session_status() === PHP_SESSION_NONE) {
+    // Session has not started, so start it
+    session_start();
+}
+$username = $_SESSION['username'] ?? 'Guest';
 ?> 
 
     <!-- Navbar using Bootstrap classes -->
@@ -29,9 +34,15 @@ $baseURL = '/roadsters';
                 <li class="nav-item">
                     <a class="nav-link" href="<?= $baseURL; ?>/views/contact_us.php">Contact Us</a>
                 </li>
+                <?php if (isset($_SESSION['userID'])): ?>
+                <li class="nav-item">
+                    <a class="nav-link" href="<?= $baseURL; ?>/views/authentication/logout.php">Logout (<?= htmlspecialchars($username) ?>)</a>
+                </li>
+            <?php else: ?>
                 <li class="nav-item">
                     <a class="nav-link" href="<?= $baseURL; ?>/views/authentication/login.php">Login</a>
                 </li>
+            <?php endif; ?>
             </ul>
         </div>
     </div>

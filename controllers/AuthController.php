@@ -32,6 +32,15 @@ class AuthController {
 
                 // Redirect back to the original page
                 $redirect = $_GET['redirect'] ?? '/roadsters/index.php';
+                
+                // Append 'make' and 'model' parameters if they exist in the URL
+                if (isset($_GET['make'])) {
+                    $redirect .= (strpos($redirect, '?') === false ? '?' : '&') . 'make=' . urlencode($_GET['make']);
+                }
+                if (isset($_GET['model'])) {
+                    $redirect .= (strpos($redirect, '?') === false ? '?' : '&') . 'model=' . urlencode($_GET['model']);
+                }
+                
                 header("Location: $redirect");
                 exit();
             } else {

@@ -11,27 +11,27 @@
             </div>
             <div class="col-md-6 col-lg-7 d-flex align-items-center">
               <div class="card-body p-4 p-lg-5 text-black">
+              <form method="POST" action="/roadsters/controllers/AuthController.php?action=login<?php echo isset($_GET['redirect']) ? '&redirect=' . urlencode($_GET['redirect']) : ''; ?><?php echo isset($_GET['make']) ? '&make=' . urlencode($_GET['make']) : ''; ?><?php echo isset($_GET['model']) ? '&model=' . urlencode($_GET['model']) : ''; ?>" class="needs-validation" novalidate>
 
-                <form method="POST" action="/roadsters/controllers/AuthController.php?action=login" class="signin-form needs-validation" novalidate>
-                  <h5 class="fw-normal mb-3 pb-3 form-title">Sign into your account</h5>
+                
+                <h5 class="fw-normal mb-3 pb-3 form-title">Sign into your account</h5>
 
-                  <div class="form-outline mb-4">
+                    <div class="form-outline mb-4">
                     <input placeholder="Username" type="text" id="username" name="username" class="form-control form-control-lg" required />
                     <div class="invalid-feedback">Please enter your username.</div>
-                  </div>
+                    </div>
 
-                  <div class="form-outline mb-4">
+                    <div class="form-outline mb-4">
                     <input placeholder="Password" type="password" id="password" name="password" class="form-control form-control-lg" required />
                     <div class="invalid-feedback">Please enter your password.</div>
-                  </div>
+                    </div>
 
-                  <div class="pt-1 mb-4">
+                    <div class="pt-1 mb-4">
                     <button class="btn-stndrd" type="submit">Login</button>
-                  </div>
-
+                    </div>
                 </form>
 
-                <div class="text-center mt-3">
+    <div class="text-center mt-3">
                   <a href="/roadsters/views/authentication/register.php" class="small text-muted">Don't have an account? Register here</a>
                 </div>
 
