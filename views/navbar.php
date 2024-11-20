@@ -36,6 +36,9 @@ $username = $_SESSION['username'] ?? 'Guest';
                 </li>
                 <?php if (isset($_SESSION['userID'])): ?>
                 <li class="nav-item">
+                <li class="nav-item">
+                    <a class="nav-link" href="<?= $baseURL; ?>/views/cars/viewFavoriteCars.php">Saved Cars</a>
+                </li>
                     <a class="nav-link" href="<?= $baseURL; ?>/views/authentication/logout.php">Logout (<?= htmlspecialchars($username) ?>)</a>
                 </li>
             <?php else: ?>
