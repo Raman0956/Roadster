@@ -67,6 +67,8 @@ $categories = $carController->getCarCategories();
     <?php endforeach; ?>
 </div>
 
+<?php require_once './views/footer.php'; ?>
+
 <!-- Single Image Carousel -->
 <div class="container my-4">
     <div class="row justify-content-center">

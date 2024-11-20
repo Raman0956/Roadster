@@ -1,4 +1,4 @@
-<?php require_once '../views/header.php'; ?>
+<?php require_once './header.php'; ?>
 
 <!-- Top Links for Phone, Location, and Email -->
 <div class="top-links" style="padding: 10px; text-align: center; background-color: white; ">
@@ -64,18 +64,4 @@
 
 </div>
 
-<!-- Footer with Social Media Links -->
-<footer style="text-align: center; margin-top: 50px; padding: 20px; background-color: white;">
-    <p>Follow us on social media:</p>
-    <a href="https://www.facebook.com/your-page" target="_blank" style="margin: 0 10px;">
-        <img src="../images/facebook-icon.png" alt="Facebook Icon" style="width: 32px; vertical-align: middle;">
-    </a>
-    <a href="https://twitter.com/your-profile" target="_blank" style="margin: 0 10px;">
-        <img src="../images/twitter-icon.png" alt="Twitter Icon" style="width: 32px; vertical-align: middle;">
-    </a>
-    <a href="https://www.instagram.com/your-profile" target="_blank" style="margin: 0 10px;">
-        <img src="../images/instagram-icon.png" alt="Instagram Icon" style="width: 32px; vertical-align: middle;">
-    </a>
-</footer>
-
-
+<?php require_once './footer.php'; ?>
