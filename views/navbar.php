@@ -31,10 +31,13 @@ $role = $_SESSION['role'] ?? 'Guest'; // Get the user role (default is Guest)
                         <a class="nav-link" href="<?= $baseURL; ?>/views/admin/adminIndex.php">Manage Inventory</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="<?= $baseURL; ?>/views/admin/users.php">Manage Users</a>
+                        <a class="nav-link" href="<?= $baseURL; ?>/views/admin/manageUsers.php">Manage Users</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="<?= $baseURL; ?>/views/admin/users.php">Manage Services</a>
+                        <a class="nav-link" href="<?= $baseURL; ?>/views/admin/manageInquires.php">Manage Inquires</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="<?= $baseURL; ?>/views/admin/manageServices.php">Manage Services</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="<?= $baseURL; ?>/views/admin/reports.php">Reports</a>

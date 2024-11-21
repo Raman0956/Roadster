@@ -15,13 +15,6 @@ $carModel = new CarModel();
 $cars = $carModel->getAllCars();
 ?>
 
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Admin Inventory Management</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body>
 <div class="container mt-5">
     <h2 class="text-center">Inventory Management</h2>
     <div class="mb-3">
@@ -52,7 +45,7 @@ $cars = $carModel->getAllCars();
                     <td><?= $car['financeOption'] ? 'Yes' : 'No'; ?></td>
                     <td>
                         <a href="/roadsters/views/admin/editCar.php?carID=<?= $car['carID']; ?>" class="btn btn-warning btn-sm">Edit</a>
-                        <form method="POST" action="/roadsters/controllers/AdminController.php" style="display:inline;">
+                        <form method="POST" action="/roadsters/controllers/AdminController.php" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete <?php echo ($car['make']). ($car['make']); ?>?');">
                             <input type="hidden" name="carID" value="<?= $car['carID']; ?>">
                             <button type="submit" name="deleteCar" class="btn btn-danger btn-sm">Delete</button>
                         </form>

@@ -1,5 +1,5 @@
 <?php
-require_once '../config/Database.php';
+require_once 'C:/xampp/htdocs/roadsters/config/database.php';
 
 class InquiryModel {
     private $conn;
@@ -43,5 +43,29 @@ class InquiryModel {
         $stmt->bindParam(':message', $message);
         return $stmt->execute();
     }
+
+    // Fetch all inquires
+    public function getAllInquiries() {
+        $query = "
+            SELECT 
+                i.userID,
+                i.carID,
+                c.make,
+                c.model,
+                s.name AS serviceName,
+                i.message,
+                i.status
+            FROM 
+                inquiry i
+            LEFT JOIN 
+                carinventory c ON i.carID = c.carID
+            LEFT JOIN 
+                service s ON i.serviceID = s.serviceID
+        ";
+        $stmt = $this->conn->prepare($query);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+    
     
 }
