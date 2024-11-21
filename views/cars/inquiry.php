@@ -26,7 +26,7 @@ $model = $_POST['model'] ?? $_GET['model'] ?? '';
 
 
 <div class="container mt-5">
-<h2 class="text-center">Book a Test Drive</h2>
+<h2 class="text-center">Send us your Inquiry</h2>
     <form method="POST" action="/roadsters/controllers/InquiryController.php?action=sendInquiry" class="needs-validation" novalidate>
         <div class="row mb-3">
         <div class="col-md-6">
@@ -49,7 +49,7 @@ $model = $_POST['model'] ?? $_GET['model'] ?? '';
         </div>
         <div class="mb-3">
             <label for="message" class="form-label">What do you want to Inquire about <?php echo $make ?> <?php echo $model ?> ? </label>
-            <textarea id="message" name="message" class="form-control" rows="4" required></textarea>
+            <textarea id="message" name="message" class="form-control" rows="4" placeholder ="I am interested in " required></textarea>
         </div>
         
         <button type="submit" class="btn btn-primary w-100">Send Inquiry</button>

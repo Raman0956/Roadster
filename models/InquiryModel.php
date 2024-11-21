@@ -33,4 +33,15 @@ class InquiryModel {
         return $stmt->execute();
     }
     
+    public function addServiceInquiry($userID, $carID = null, $serviceID = null, $message) {
+        $query = "INSERT INTO Inquiry (userID, carID, serviceID, message, status) 
+                  VALUES (:userID, :carID, :serviceID, :message, 'Pending')";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':userID', $userID);
+        $stmt->bindParam(':carID', $carID);
+        $stmt->bindParam(':serviceID', $serviceID);
+        $stmt->bindParam(':message', $message);
+        return $stmt->execute();
+    }
+    
 }

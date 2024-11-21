@@ -1,7 +1,7 @@
 <?php
-require_once 'config/Database.php';
+require_once 'C:/xampp/htdocs/roadsters/config/database.php';
 
-class Service {
+class ServiceModel {
     private $conn;
     private $table = "service";
 
@@ -11,8 +11,8 @@ class Service {
     }
 
     // Fetch all available services
-    public function getServices() {
-        $query = "SELECT * FROM " . $this->table . " WHERE promotion = 1";
+    public function getAllServices() {
+        $query = "SELECT * FROM Service";
         $stmt = $this->conn->prepare($query);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);

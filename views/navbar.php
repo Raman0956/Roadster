@@ -29,7 +29,7 @@ $username = $_SESSION['username'] ?? 'Guest';
                     <a class="nav-link" href="<?= $baseURL; ?>/views/cars/browse.php">Search</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="<?= $baseURL; ?>/views/services/list.php">Services</a>
+                    <a class="nav-link" href="<?= $baseURL; ?>/views/services/services.php">Services</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="<?= $baseURL; ?>/views/contact_us.php">Contact Us</a>
