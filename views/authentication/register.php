@@ -35,7 +35,7 @@
                   <div class="form-outline mb-4">
                     <select id="role" name="role" class="form-select form-control-lg d-flex justify-content-start" required>
                       <option value="Client">Client</option>
-                      <option value="Admin">Admin</option>
+                      
                     </select>
                     <div class="invalid-feedback">Please select a role.</div>
                   </div>

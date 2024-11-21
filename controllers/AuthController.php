@@ -1,9 +1,6 @@
 <?php
 require_once 'C:/xampp/htdocs/roadsters/models/UserModel.php';
 
-$_SESSION['userID'] = $user['userID'];
-$_SESSION['username'] = $user['username'];
-
 
 class AuthController {
     private $userModel;
@@ -30,8 +27,12 @@ class AuthController {
                 $_SESSION['username'] = $user['username'];
                 $_SESSION['role'] = $user['role'];
 
+                if ($user['role'] === 'Admin') {
+                     $redirect = $_GET['redirect'] ?? '/roadsters/views/admin/adminIndex.php';
+                } else{
                 // Redirect back to the original page
                 $redirect = $_GET['redirect'] ?? '/roadsters/index.php';
+                }
                 
                 // Append 'make' and 'model' parameters if they exist in the URL
                 if (isset($_GET['make'])) {
@@ -81,7 +82,11 @@ class AuthController {
             $success = $this->userModel->createUser($username, $hashedPassword,$email, $role);
 
             if ($success) {
-                header('Location: /roadsters/views/login.php');
+                echo "<script>
+                    alert('Registered Successfully');
+                    window.location.href = '/roadsters/views/authentication/login.php';
+                </script>";
+                
                 exit();
             } else {
                 echo "Failed to register account. Please try again.";

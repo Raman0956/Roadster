@@ -7,7 +7,9 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 $username = $_SESSION['username'] ?? 'Guest';
+$role = $_SESSION['role'] ?? 'Guest'; // Get the user role (default is Guest)
 ?> 
+
 
     <!-- Navbar using Bootstrap classes -->
     <nav class="navbar navbar-expand-lg navbar-light">
@@ -21,7 +23,27 @@ $username = $_SESSION['username'] ?? 'Guest';
                     <img class="img_logo" src="/roadsters/images/logos/roadsters.png" alt="logo">
                 </a>
             </div>
+            
             <ul class="navbar-nav ms-auto">
+            <?php if ($role === 'Admin'): ?>
+                    <!-- Admin-specific navigation -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="<?= $baseURL; ?>/views/admin/adminIndex.php">Manage Inventory</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="<?= $baseURL; ?>/views/admin/users.php">Manage Users</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="<?= $baseURL; ?>/views/admin/users.php">Manage Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="<?= $baseURL; ?>/views/admin/reports.php">Reports</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="<?= $baseURL; ?>/views/authentication/logout.php">Logout (<?= htmlspecialchars($username) ?>)</a>
+                    </li>
+                
+            <?php else: ?>
                 <li class="nav-item">
                     <a class="nav-link" href="<?= $baseURL; ?>/index.php">Home</a>
                 </li>
@@ -45,6 +67,7 @@ $username = $_SESSION['username'] ?? 'Guest';
                 <li class="nav-item">
                     <a class="nav-link" href="<?= $baseURL; ?>/views/authentication/login.php">Login</a>
                 </li>
+            <?php endif; ?>
             <?php endif; ?>
             </ul>
         </div>

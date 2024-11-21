@@ -75,14 +75,56 @@ class CarModel {
     }
     
     
-    
-
-
     public function getCarById($carID) {
         $query = 'SELECT * FROM CarInventory WHERE carID = :carID';
         $stmt = $this->db->prepare($query);
         $stmt->execute([':carID' => $carID]);
         return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+
+    // Add a new car to the inventory
+    public function addCar($make, $model, $year, $price, $category, $leaseOption, $financeOption) {
+        $query = "INSERT INTO CarInventory (make, model, year, price, category, leaseOption, financeOption, available) 
+                  VALUES (:make, :model, :year, :price, :category, :leaseOption, :financeOption, 1)";
+        $stmt = $this->db->prepare($query);
+        $stmt->bindParam(':make', $make);
+        $stmt->bindParam(':model', $model);
+        $stmt->bindParam(':year', $year);
+        $stmt->bindParam(':price', $price);
+        $stmt->bindParam(':category', $category);
+        $stmt->bindParam(':leaseOption', $leaseOption);
+        $stmt->bindParam(':financeOption', $financeOption);
+
+        return $stmt->execute();
+    }
+
+    // Update an existing car in the inventory
+    public function updateCar($carID, $make, $model, $year, $price, $category, $leaseOption, $financeOption) {
+        $query = "UPDATE CarInventory 
+                  SET make = :make, model = :model, year = :year, price = :price, 
+                      category = :category, leaseOption = :leaseOption, financeOption = :financeOption 
+                  WHERE carID = :carID";
+        $stmt = $this->db->prepare($query);
+        $stmt->bindParam(':carID', $carID);
+        $stmt->bindParam(':make', $make);
+        $stmt->bindParam(':model', $model);
+        $stmt->bindParam(':year', $year);
+        $stmt->bindParam(':price', $price);
+        $stmt->bindParam(':category', $category);
+        $stmt->bindParam(':leaseOption', $leaseOption);
+        $stmt->bindParam(':financeOption', $financeOption);
+
+        return $stmt->execute();
+    }
+
+    // Delete a car from the inventory
+    public function deleteCar($carID) {
+        $query = "DELETE FROM CarInventory WHERE carID = :carID";
+        $stmt = $this->db->prepare($query);
+        $stmt->bindParam(':carID', $carID);
+
+        return $stmt->execute();
     }
     
     
