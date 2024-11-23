@@ -53,6 +53,7 @@ class InquiryModel {
                 c.make,
                 c.model,
                 s.name AS serviceName,
+                u.email,
                 i.message,
                 i.status
             FROM 
@@ -61,6 +62,8 @@ class InquiryModel {
                 carinventory c ON i.carID = c.carID
             LEFT JOIN 
                 service s ON i.serviceID = s.serviceID
+            LEFT JOIN 
+                user u ON i.userID = u.userID
         ";
         $stmt = $this->conn->prepare($query);
         $stmt->execute();

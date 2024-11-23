@@ -1,6 +1,7 @@
 <?php
 session_start();
 require_once 'C:/xampp/htdocs/roadsters/models/InquiryModel.php';
+require_once 'C:/xampp/htdocs/roadsters/models/TestDriveModel.php';
 require_once 'C:/xampp/htdocs/roadsters/views/header.php';
 
 // Ensure the user is logged in and is an admin
@@ -10,14 +11,20 @@ if (!isset($_SESSION['userID']) || $_SESSION['role'] !== 'Admin') {
 }
 
 $inquiryModel = new InquiryModel();
+$testDriveModel = new TestDriveModel();
 
 // Fetch all inquiries
 $inquiries = $inquiryModel->getAllInquiries();
+$testDriveInquiries = $testDriveModel->getAllTestDriveInquiries();
 
 // Separate inquiries based on carID
 $validInquiries = array_filter($inquiries, fn($inquiry) => !empty($inquiry['carID']));
 $nullInquiries = array_filter($inquiries, fn($inquiry) => empty($inquiry['carID']));
+
 $pendingInquiries = array_filter($inquiries, fn($inquiry) => ($inquiry['status'] ==='Pending'));
+
+$pendingTestDriveInquiries = array_filter($testDriveInquiries, fn($inquiry) => ($inquiry['status'] ==='Pending'));
+$approvedTestDriveInquiries = array_filter($testDriveInquiries, fn($inquiry) => ($inquiry['status'] ==='Approved'));
 ?>
 
 <div class="container mt-5">
@@ -25,13 +32,10 @@ $pendingInquiries = array_filter($inquiries, fn($inquiry) => ($inquiry['status']
 
     <!-- Filter Options -->
     <div class="d-flex justify-content-center my-4">
+        
         <div class="form-check me-3">
-            <input class="form-check-input" type="radio" name="inquiryFilter" id="pendingInquiries" value="pending" checked>
-            <label class="form-check-label" for="pendingInquiries">Pending Inquires</label>
-        </div>
-        <div class="form-check me-3">
-            <input class="form-check-input" type="radio" name="inquiryFilter" id="allInquiries" value="all" >
-            <label class="form-check-label" for="allInquiries">All Inquiries</label>
+            <input class="form-check-input" type="radio" name="inquiryFilter" id="allInquiries" value="all" checked >
+            <label class="form-check-label" for="allInquiries">Test Drive Inquiries</label>
         </div>
         <div class="form-check me-3">
             <input class="form-check-input" type="radio" name="inquiryFilter" id="validInquiries" value="valid">
@@ -43,29 +47,38 @@ $pendingInquiries = array_filter($inquiries, fn($inquiry) => ($inquiry['status']
         </div>
     </div>
 
-    <!-- All Inquiries Table -->
-<div id="allInquiriesTable" class="inquiry-table" style="display: none;">
+    <!-- test drive Inquiries Table -->
+<div id="allInquiriesTable" class="inquiry-table">
     <table class="table table-bordered">
         <thead>
             <tr>
                 <th>User ID</th>
+                <th>User Email</th>
                 <th>Stock ID</th>
                 <th>Make</th>
                 <th>Model</th>
-                <th>Service</th>
-                <th>Message</th>
-                <th>Status</th>
+                <th>Preferred Date</th>
+                <th>Preferred Time</th>
+                <th> <form method="POST" action="">
+                            <input type="hidden" name="inquiryID" value="<?= htmlspecialchars($inquiry['inquiryID']); ?>">
+                            <select name="status" class="form-select" onchange="this.form.submit()">
+                                <option value="Pending" >Pending</option>
+                                <option value="Completed" >Completed</option>
+                                <option value="Approved" >Approved</option>
+                            </select>
+                        </form></th>
             </tr>
         </thead>
         <tbody>
-            <?php foreach ($inquiries as $inquiry): ?>
+            <?php foreach ($testDriveInquiries as $inquiry): ?>
                 <tr>
                     <td><?= htmlspecialchars($inquiry['userID']); ?></td>
+                    <td><?= htmlspecialchars($inquiry['email']); ?></td>
                     <td><?= htmlspecialchars($inquiry['carID'] ?? 'N/A'); ?></td>
                     <td><?= htmlspecialchars($inquiry['make'] ?? 'N/A'); ?></td>
                     <td><?= htmlspecialchars($inquiry['model'] ?? 'N/A'); ?></td>
-                    <td><?= htmlspecialchars($inquiry['serviceName'] ?? 'N/A'); ?></td>
-                    <td><?= htmlspecialchars($inquiry['message']); ?></td>
+                    <td><?= htmlspecialchars($inquiry['preferredDate'] ?? 'N/A'); ?></td>
+                    <td><?= htmlspecialchars($inquiry['preferredTime']); ?></td>
                     <td><?= htmlspecialchars($inquiry['status']); ?></td>
                 </tr>
             <?php endforeach; ?>
@@ -73,35 +86,6 @@ $pendingInquiries = array_filter($inquiries, fn($inquiry) => ($inquiry['status']
     </table>
 </div>
 
-<!-- Pending Inquiries Table -->
-<div id="pendingInquiriesTable" class="inquiry-table" >
-    <table class="table table-bordered">
-        <thead>
-            <tr>
-                <th>User ID</th>
-                <th>Stock ID</th>
-                <th>Make</th>
-                <th>Model</th>
-                <th>Service</th>
-                <th>Message</th>
-                <th>Status</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php foreach ($pendingInquiries as $inquiry): ?>
-                <tr>
-                    <td><?= htmlspecialchars($inquiry['userID']); ?></td>
-                    <td><?= htmlspecialchars($inquiry['carID'] ?? 'N/A'); ?></td>
-                    <td><?= htmlspecialchars($inquiry['make'] ?? 'N/A'); ?></td>
-                    <td><?= htmlspecialchars($inquiry['model'] ?? 'N/A'); ?></td>
-                    <td><?= htmlspecialchars($inquiry['serviceName'] ?? 'N/A'); ?></td>
-                    <td><?= htmlspecialchars($inquiry['message']); ?></td>
-                    <td><?= htmlspecialchars($inquiry['status']); ?></td>
-                </tr>
-            <?php endforeach; ?>
-        </tbody>
-    </table>
-</div>
 
 <!-- Valid Inquiries Table -->
 <div id="validInquiriesTable" class="inquiry-table" style="display: none;">
@@ -112,7 +96,7 @@ $pendingInquiries = array_filter($inquiries, fn($inquiry) => ($inquiry['status']
                 <th>Stock ID</th>
                 <th>Make</th>
                 <th>Model</th>
-                <th>Service</th>
+                <th>Client Email</th>
                 <th>Message</th>
                 <th>Status</th>
             </tr>
@@ -124,7 +108,7 @@ $pendingInquiries = array_filter($inquiries, fn($inquiry) => ($inquiry['status']
                     <td><?= htmlspecialchars($inquiry['carID']); ?></td>
                     <td><?= htmlspecialchars($inquiry['make'] ?? 'N/A'); ?></td>
                     <td><?= htmlspecialchars($inquiry['model'] ?? 'N/A'); ?></td>
-                    <td><?= htmlspecialchars($inquiry['serviceName'] ?? 'N/A'); ?></td>
+                    <td><?= htmlspecialchars($inquiry['email'] ?? 'N/A'); ?></td>
                     <td><?= htmlspecialchars($inquiry['message']); ?></td>
                     <td><?= htmlspecialchars($inquiry['status']); ?></td>
                 </tr>
@@ -139,6 +123,7 @@ $pendingInquiries = array_filter($inquiries, fn($inquiry) => ($inquiry['status']
         <thead>
             <tr>
                 <th>User ID</th>
+                <th>Client Email</th>
                 <th>Service</th>
                 <th>Message</th>
                 <th>Status</th>
@@ -148,6 +133,7 @@ $pendingInquiries = array_filter($inquiries, fn($inquiry) => ($inquiry['status']
             <?php foreach ($nullInquiries as $inquiry): ?>
                 <tr>
                     <td><?= htmlspecialchars($inquiry['userID']); ?></td>
+                    <td><?= htmlspecialchars($inquiry['email'] ?? 'N/A'); ?></td>
                     <td><?= htmlspecialchars($inquiry['serviceName'] ?? 'N/A'); ?></td>
                     <td><?= htmlspecialchars($inquiry['message']); ?></td>
                     <td><?= htmlspecialchars($inquiry['status']); ?></td>

@@ -1,5 +1,5 @@
 <?php
-require_once '../config/Database.php';
+require_once 'C:/xampp/htdocs/roadsters/config/database.php';
 
 class TestDriveModel {
     private $conn;
@@ -19,5 +19,30 @@ class TestDriveModel {
         $stmt->bindParam(':preferredTime', $preferredTime);
 
         return $stmt->execute();
+    }
+
+
+    // Fetch all inquires
+    public function getAllTestDriveInquiries() {
+        $query = "
+            SELECT 
+                t.userID,
+                t.carID,
+                c.make,
+                c.model,
+                u.email,
+                t.preferredDate,
+                t.preferredTime,
+                t.status
+            FROM 
+                testdrivebooking t
+            LEFT JOIN 
+                carinventory c ON t.carID = c.carID
+            LEFT JOIN 
+                user u ON t.userID = u.userID
+        ";
+        $stmt = $this->conn->prepare($query);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 }
