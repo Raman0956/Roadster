@@ -25,7 +25,8 @@ class TestDriveModel {
     // Fetch all inquires
     public function getAllTestDriveInquiries() {
         $query = "
-            SELECT 
+            SELECT
+                t.bookingID, 
                 t.userID,
                 t.carID,
                 c.make,
@@ -45,4 +46,13 @@ class TestDriveModel {
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    public function updateBookingStatus($bookingID, $newStatus) {
+        $query = "UPDATE testdrivebooking SET status = :status WHERE bookingID = :bookingID";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':status', $newStatus);
+        $stmt->bindParam(':bookingID', $bookingID);
+        return $stmt->execute();
+    }
+    
 }

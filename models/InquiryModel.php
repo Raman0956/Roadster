@@ -48,6 +48,7 @@ class InquiryModel {
     public function getAllInquiries() {
         $query = "
             SELECT 
+                i.inquiryID,
                 i.userID,
                 i.carID,
                 c.make,
@@ -70,5 +71,14 @@ class InquiryModel {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
     
+    public function updateInquiryStatus($inquiryID, $newStatus) {
+        $query = "UPDATE inquiry SET status = :status WHERE inquiryID = :inquiryID";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':status', $newStatus);
+        $stmt->bindParam(':inquiryID', $inquiryID);
+        return $stmt->execute();
+    }
+
+ 
     
 }
