@@ -68,34 +68,3 @@ $categories = $carController->getCarCategories();
 </div>
 
 <?php require_once './views/footer.php'; ?>
-
-<!-- Single Image Carousel -->
-<div class="container my-4">
-    <div class="row justify-content-center">
-        <div class="col-12 col-md-8">
-            <div class="position-relative">
-                <img id="carouselImage" src="images/<?= htmlspecialchars($allCars[0]['make']) ?>.png" alt="Car Image" class="img-fluid">
-                <div class="carousel-buttons justify-content-center">
-                    <button class="btn btn-dark" onclick="changeImage(-1)">&#10094;</button>
-                    <button class="btn btn-dark" onclick="changeImage(1)">&#10095;</button>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<script>
-    // JavaScript for image carousel
-    let currentImageIndex = 0;
-    const carImages = <?= json_encode(array_column($allCars, 'make')); ?>;
-
-    function changeImage(direction) {
-        currentImageIndex += direction;
-        if (currentImageIndex < 0) {
-            currentImageIndex = carImages.length - 1;
-        } else if (currentImageIndex >= carImages.length) {
-            currentImageIndex = 0;
-        }
-        document.getElementById("carouselImage").src = "images/" + carImages[currentImageIndex] + ".png";
-    }
-</script>

@@ -1,4 +1,5 @@
-<?php require_once 'C:/xampp/htdocs/roadsters/views/header.php'; 
+<?php 
+require_once 'C:/xampp/htdocs/roadsters/views/header.php'; 
 require_once 'C:/xampp/htdocs/roadsters/models/ServiceModel.php';
     
     if ($_SESSION['role'] !== 'Admin') {

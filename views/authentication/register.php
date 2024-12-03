@@ -33,11 +33,8 @@
                   </div>
 
                   <div class="form-outline mb-4">
-                    <select id="role" name="role" class="form-select form-control-lg d-flex justify-content-start" required>
-                      <option value="Client">Client</option>
-                      
-                    </select>
-                    <div class="invalid-feedback">Please select a role.</div>
+                    <input id="role" name="role" value="client" class="form-select form-control-lg d-flex justify-content-start" required type="hidden" />
+                
                   </div>
 
                   <div class="pt-1 mb-4">
