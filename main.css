@@ -112,10 +112,6 @@ body {
     color: #555;
 }
 
-.carousel.row {
-    gap: 20px; /* Adds spacing between cards */
-}
-
 /* Container and Row Styling */
 .container {
     margin-top: 20px;

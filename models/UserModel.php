@@ -40,6 +40,35 @@ class UserModel {
         return $stmt->fetchColumn() > 0; // Returns true if username exists
     }
 
+    public function getAllUsers() {
+        $query = "SELECT userID, username, email, role FROM user";
+        $stmt = $this->conn->prepare($query);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function getDistinctRoles() {
+        $query = "SELECT DISTINCT role FROM user";
+        $stmt = $this->conn->prepare($query);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_COLUMN); // Returns an array of roles
+    }
+
+    public function updateUserRole($userID, $role) {
+        $query = "UPDATE user SET role = :role WHERE userID = :userID";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':role', $role);
+        $stmt->bindParam(':userID', $userID);
+        return $stmt->execute();
+    }
+
+    public function deleteUser($userID) {
+        $query = "DELETE FROM user WHERE userID = :userID";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':userID', $userID, PDO::PARAM_INT);
+        return $stmt->execute();
+    }
+
 }
 
 ?>
