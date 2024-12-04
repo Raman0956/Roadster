@@ -47,49 +47,50 @@ $userType = $userController->getDistinctRoles();
 
 ?>
 
-<div class="container mt-5">
-    <h2 class="text-center">Manage Users</h2>
-    <table class="table table-bordered">
-        <thead>
-            <tr>
-                <th>User ID</th>
-                <th>Username</th>
-                <th>Email</th>
-                <th>Role</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php foreach ($users as $user): ?>
+<div class="container my-5">
+    <h2 class="text-center mb-4">Manage Users</h2>
+    <div class="table-responsive">
+        <table class="table table-bordered align-middle">
+            <thead class="table-dark text-center">
                 <tr>
-                    <td><?php echo htmlspecialchars($user['userID']); ?></td>
-                    <td><?php echo htmlspecialchars($user['username']); ?></td>
-                    <td><?php echo htmlspecialchars($user['email']); ?></td>
-                    <td>
-                    <form method="POST" action="/roadsters/controllers/UserController.php">
-                            <input type="hidden" name="userID" value="<?php echo htmlspecialchars($user['userID']); ?>">
-                            <select name="role" class="form-select">
-                                <?php foreach ($userType as $role): ?>
-                                    <option value="<?php echo htmlspecialchars($role); ?>" 
-                                        <?php echo $user['role'] === $role ? 'selected' : ''; ?>>
-                                        <?php echo htmlspecialchars($role); ?>
-                                    </option>
-                                <?php endforeach; ?>
-                            </select>
-                            <button type="submit" class="btn btn-primary btn-sm mt-2">Update</button>
-                        </form>    
-                        <td>
-    <form method="POST" action="/roadsters/controllers/UserController.php">
-        <input type="hidden" name="userID" value="<?php echo htmlspecialchars($user['userID']); ?>">
-        <input type="hidden" name="action" value="delete">
-        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this user?');">
-            Delete
-        </button>
-    </form>
-</td>
-
+                    <th>User ID</th>
+                    <th>Username</th>
+                    <th>Email</th>
+                    <th>Role</th>
+                    <th>Actions</th>
                 </tr>
-            <?php endforeach; ?>
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                <?php foreach ($users as $user): ?>
+                    <tr>
+                        <td class="text-center"><?php echo htmlspecialchars($user['userID']); ?></td>
+                        <td class="text-center"><?php echo htmlspecialchars($user['username']); ?></td>
+                        <td class="text-center"><?php echo htmlspecialchars($user['email']); ?></td>
+                        <td>
+                            <form method="POST" action="/roadsters/controllers/UserController.php" class="d-flex justify-content-center">
+                                <input type="hidden" name="userID" value="<?php echo htmlspecialchars($user['userID']); ?>">
+                                <select name="role" class="form-select my-2">
+                                    <?php foreach ($userType as $role): ?>
+                                        <option value="<?php echo htmlspecialchars($role); ?>" 
+                                            <?php echo $user['role'] === $role ? 'selected' : ''; ?>>
+                                            <?php echo htmlspecialchars($role); ?>
+                                        </option>
+                                    <?php endforeach; ?>
+                                </select>
+                                <button type="submit" class="btn btn-warning btn-sm ms-2 my-2">Update</button>
+                            </form>
+                        </td>
+                        <td class="text-center">
+                            <form method="POST" action="/roadsters/controllers/UserController.php" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete this user?');">
+                                <input type="hidden" name="userID" value="<?php echo htmlspecialchars($user['userID']); ?>">
+                                <input type="hidden" name="action" value="delete">
+                                <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+    </div>
 </div>
+

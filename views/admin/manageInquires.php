@@ -161,7 +161,7 @@ $filteredNullInquiries = ($filterType === 'nullInquiries' && $statusFilter)
                     <option value="Completed">Completed</option>
                 </select>
             </div>
-            <button type="submit" name="bookingUpdate" class="btn btn-primary">Update Selected</button>
+            <button type="submit" name="bookingUpdate" class="btn-stndrd">Update Selected</button>
         <?php endif; ?>
     </form>
     </div>

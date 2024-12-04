@@ -9,33 +9,10 @@ $services = $serviceModel->getAllServices();
 
 // Get logged-in user ID
 $userID = $_SESSION['userID'] ?? null;
+require_once '../../views/header.php'; 
 
 ?>
 
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Our Services </title> 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        .service-container {
-            height: 100vh;
-            display: flex;
-            overflow: hidden;
-        }
-
-        .service-list {
-            overflow-y: auto;
-            border-right: 1px solid #ddd;
-            padding-right: 15px;
-        }
-
-        .inquiry-form {
-            padding-left: 15px;
-        }
-    </style>
-</head>
-<body>
 <div class="container-fluid mt-5">
     <div class="row service-container">
         <!-- Services List -->
@@ -43,7 +20,7 @@ $userID = $_SESSION['userID'] ?? null;
             <h2 class="text-center">Our Services</h2>
             <?php if (!empty($services)): ?>
                 <?php foreach ($services as $service): ?>
-                    <div class="card mb-3">
+                    <div class="service-card">
                         <div class="card-body">
                             <h5 class="card-title"><?= htmlspecialchars($service['name']); ?></h5>
                             <p class="card-text"><?= htmlspecialchars($service['description']); ?></p>
@@ -79,12 +56,16 @@ $userID = $_SESSION['userID'] ?? null;
                     <textarea id="message" name="message" class="form-control" rows="4" required placeholder="Need a Service Appointment? Send us a message."></textarea>
                     <div class="invalid-feedback">Please enter a message.</div>
                 </div>
-                <button type="submit" name="inquireService" class="btn btn-primary w-100">Submit Inquiry</button>
+                <div class = "d-flex justify-content-center mt-4">
+                    
+                <button type="submit" name="inquireService" class="btn-stndrd">Submit Inquiry</button>
+             
+        </div>
             </form>
             
             <?php else: ?>
                 <p class="text-center mt-5">
-                    <a href="/roadsters/views/authentication/login.php?redirect=/roadsters/views/services/services.php" class="btn btn-primary">Login to Inquire</a>
+                    <a href="/roadsters/views/authentication/login.php?redirect=/roadsters/views/services/services.php" class="btn-stndrd">Login to Inquire</a>
                 </p>
             <?php endif; ?>
         </div>

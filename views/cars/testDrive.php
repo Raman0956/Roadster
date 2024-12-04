@@ -12,17 +12,11 @@ $username = $_SESSION['username'] ?? 'Guest';
 $carID = $_POST['carID'] ?? $_GET['carID'] ?? '';
 $make = $_POST['make'] ?? $_GET['make'] ?? '';
 $model = $_POST['model'] ?? $_GET['model'] ?? '';
+
+require_once '../../views/header.php'; 
 ?>
 
 
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Book a Test Drive</title>
-    <!-- Include Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body>
 
 
 <div class="container mt-5">
@@ -46,16 +40,20 @@ $model = $_POST['model'] ?? $_GET['model'] ?? '';
                 <label for="model" class="form-label">Model</label>
                 <input type="text" id="model" name="model" value="<?= htmlspecialchars($model) ?>" class="form-control" readonly>
             </div>
-        </div>
-        <div class="mb-3">
+        
+        <div class="col-md-6">
             <label for="preferredDate" class="form-label">Preferred Date</label>
             <input type="date" id="preferredDate" name="preferredDate" class="form-control" required>
         </div>
-        <div class="mb-3">
+        <div class="col-md-6">
             <label for="preferredTime" class="form-label">Preferred Time</label>
             <input type="time" id="preferredTime" name="preferredTime" class="form-control" required>
         </div>
-        <button type="submit" class="btn btn-primary w-100">Book Test Drive</button>
+        </div>
+        <div class = "d-flex justify-content-center mt-4">
+            
+        <button type="submit" class="btn-stndrd">Book Test Drive</button> 
+        </div>
     </form>
 </div>
 

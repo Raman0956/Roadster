@@ -46,6 +46,12 @@ class UserModel {
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+    public function getAllUsersCount() {
+        $query = "SELECT role,count(userID) AS count FROM user GROUP BY role";
+        $stmt = $this->conn->prepare($query);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 
     public function getDistinctRoles() {
         $query = "SELECT DISTINCT role FROM user";

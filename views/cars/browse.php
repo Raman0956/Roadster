@@ -73,7 +73,7 @@ require_once '../../views/header.php'; ?>
 <?php if (!empty($cars)): ?>
     <div id="carCarousel" class="carousel row search_page">
         <?php foreach ($cars as $car): ?>
-            <div class="car-card col-md-4 mb-4">
+            <div class="car-card col-md-4 mb-4 mx-2">
                 <a class="card-link" href="viewCar.php?carID=<?= htmlspecialchars($car['carID']); ?>">
                    
                         <img src="../../images/<?= htmlspecialchars($car['make']) ?>.png" alt="<?= htmlspecialchars($car['make'] . ' ' . $car['model']) ?>" class="card-img-top">

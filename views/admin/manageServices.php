@@ -34,13 +34,13 @@ require_once 'C:/xampp/htdocs/roadsters/models/ServiceModel.php';
                 </label>
             </div>
         </div>
-        <button type="submit" class="btn btn-primary mt-3">Add Service</button>
+        <button type="submit" class="btn-stndrd">Add Service</button>
     </form>
 
     <!-- Service List -->
     <h4>Existing Services</h4>
-    <table class="table table-bordered">
-        
+    <table class="table table-bordered align-middle">
+    <thead class="table-dark text-center">
             <tr>
                 <th>Service Name</th>
                 <th>Description</th>
@@ -48,7 +48,8 @@ require_once 'C:/xampp/htdocs/roadsters/models/ServiceModel.php';
                 <th>Promotion</th>
                 <th></th>
             </tr>
-        
+            </thead>   
+            <tbody> 
             <?php foreach ($services as $service): ?>
                 <tr>
                     <td><?= htmlspecialchars($service['name']); ?></td>
@@ -60,12 +61,14 @@ require_once 'C:/xampp/htdocs/roadsters/models/ServiceModel.php';
                         <a href="/roadsters/views/admin/editService.php?serviceID=<?= $service['serviceID']; ?>" class="btn btn-warning btn-sm">Edit</a>
                         <form method="POST" action="/roadsters/controllers/ServiceController.php?action=deleteService" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete <?php echo ($service['name']); ?>?');">
                             <input type="hidden" name="serviceID" value="<?= $service['serviceID']; ?>">
-                            <button type="submit" class="btn btn-danger">Delete</button>
+                            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
                         </form>
                     </td>
 
                 </tr>
             <?php endforeach; ?>
+            </tbody>
+        </table>
         
     </table>
 </div>

@@ -18,6 +18,10 @@ class UserController {
         return $this->userModel->getAllUsers();
     }
 
+    public function getAllUsersCount() {
+        return $this->userModel->getAllUsersCount();
+    }
+
     // Retrieve distinct roles
     public function getDistinctRoles() {
         return $this->userModel->getDistinctRoles();

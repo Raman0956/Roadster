@@ -1,4 +1,4 @@
-<?php
+<?php 
 session_start();
 require_once 'C:/xampp/htdocs/roadsters/models/CarModel.php';
 require_once 'C:/xampp/htdocs/roadsters/views/header.php';
@@ -26,28 +26,37 @@ if (!$car) {
     exit();
 }
 
-?>
+$image_filename = '../../images/' . htmlspecialchars($car['make']) . '.png';
+$image_alt = 'Image: ' . htmlspecialchars($car['make']) . '.png';
+
+?>  
 
 <div class="container mt-5">
     <h2 class="text-center">Edit Car</h2>
-    <form method="POST" action="/roadsters/controllers/AdminController.php?action=editCar&carID=<?= $carID ?>" class="needs-validation" novalidate>
-        <div class="mb-3">
+    <form method="POST" action="/roadsters/controllers/AdminController.php?action=editCar&carID=<?= htmlspecialchars($carID) ?>" enctype="multipart/form-data" class="needs-validation" novalidate>
+        
+        <!-- Car Details -->
+         
+        <div class="row mb-3">
+        <div class="col-md-6">
             <label for="make" class="form-label">Make</label>
             <input type="text" id="make" name="make" class="form-control" value="<?= htmlspecialchars($car['make']) ?>" required>
         </div>
-        <div class="mb-3">
+        <div class="col-md-6">
             <label for="model" class="form-label">Model</label>
             <input type="text" id="model" name="model" class="form-control" value="<?= htmlspecialchars($car['model']) ?>" required>
         </div>
-        <div class="mb-3">
+        <div class="col-md-6">
             <label for="year" class="form-label">Year</label>
             <input type="number" id="year" name="year" class="form-control" value="<?= htmlspecialchars($car['year']) ?>" required>
         </div>
-        <div class="mb-3">
+        <div class="col-md-6">
             <label for="price" class="form-label">Price</label>
             <input type="number" step="0.01" id="price" name="price" class="form-control" value="<?= htmlspecialchars($car['price']) ?>" required>
         </div>
-        <div class="mb-3">
+        </div>
+        <div class="row mb-3">
+        <div class="col-md-4">
             <label for="category" class="form-label">Category</label>
             <select id="category" name="category" class="form-control" required>
                 <option value="SUV" <?= $car['category'] === 'SUV' ? 'selected' : '' ?>>SUV</option>
@@ -57,23 +66,36 @@ if (!$car) {
                 <option value="Convertible" <?= $car['category'] === 'Convertible' ? 'selected' : '' ?>>Convertible</option>
             </select>
         </div>
-        <div class="mb-3">
+        <div class="col-md-4">
             <label for="leaseOption" class="form-label">Lease Option</label>
             <select id="leaseOption" name="leaseOption" class="form-control" required>
                 <option value="1" <?= $car['leaseOption'] ? 'selected' : '' ?>>Available</option>
                 <option value="0" <?= !$car['leaseOption'] ? 'selected' : '' ?>>Not Available</option>
             </select>
         </div>
-        <div class="mb-3">
+        <div class="col-md-4">
             <label for="financeOption" class="form-label">Finance Option</label>
             <select id="financeOption" name="financeOption" class="form-control" required>
                 <option value="1" <?= $car['financeOption'] ? 'selected' : '' ?>>Available</option>
                 <option value="0" <?= !$car['financeOption'] ? 'selected' : '' ?>>Not Available</option>
             </select>
         </div>
-        <button type="submit" class="btn btn-primary w-100">Save Changes</button>
-    </form>
 </div>
+        
+    <div class = "d-flex justify-content-center mt-4">
+    <div class="service-card col-md-6">
+        <img class="card-img-top" src="<?= htmlspecialchars($image_filename) ?>" alt="<?= htmlspecialchars($image_alt) ?>" />
+    </div>
+    <div class="col-md-2 mx-4">
+        <label for="fileToUpload">Update Image</label>
+        <input type="file" name="fileToUpload" id="fileToUpload">
+    </div>
+            
+        </div>
+        <div class = "d-flex justify-content-center mt-4"> 
+    <button type="submit" class="btn-stndrd">Update</button>
+</div>
+</form>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script>
@@ -91,5 +113,3 @@ if (!$car) {
         });
     })();
 </script>
-</body>
-</html>

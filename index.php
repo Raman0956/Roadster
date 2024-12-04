@@ -36,25 +36,30 @@ $categories = $carController->getCarCategories();
         </div>
     </div>
     <div class="row">
-        <?php foreach ($categories as $category): ?>
-            <div class="col-md-2 col-sm-4 col-6 mb-3">
-                <div class="card text-center">
-                    <img src="images/logos/<?= htmlspecialchars($category) ?>.svg" alt="<?= htmlspecialchars($category) ?>" class="card-img-top" style="max-height: 100px; object-fit: contain;">
-                    <div class="card-body">
-                        <a href="index.php?category=<?= urlencode($category) ?>" class="btn btn-primary"><?= htmlspecialchars($category) ?></a>
-                    </div>
-                </div>
-            </div>
-        <?php endforeach; ?>
+    <?php foreach ($categories as $category): ?>
+    <div class="col-md-2 col-sm-4 col-6 mb-3">
+    <div class="category-card card text-center <?php echo ($selectedCategory === $category) ? 'selected' : ''; ?>">
+    <div class="card-body">
+        <a class="cat-text" href="index.php?category=<?= urlencode($category) ?>" 
+           data-category="<?= htmlspecialchars($category) ?>">
+           <img src="images/logos/<?= htmlspecialchars($category) ?>.svg" alt="<?= htmlspecialchars($category) ?>" class="card-img-top" style="max-height: 100px; object-fit: contain;">
+    
+           <?= htmlspecialchars($category) ?>
+        </a>
+    </div>
+</div>
+    </div>
+<?php endforeach; ?>
+
     </div>
 </div>
 
 <!-- Car Carousel -->
-<div id="carCarousel" class="carousel row">
+<div id="carCarousel" class="carousel row search_page">
     <?php foreach ($allCars as $car): ?>
-        <div class="col-md-4 mb-4">
+        <div class="car-card col-md-4 mb-4 mx-2">
             <a href="views/cars/viewCar.php?carID=<?= htmlspecialchars($car['carID']); ?>" class="card-link" style="text-decoration: none; color: inherit;">
-                <div class="card">
+                <div class="card-link">
                     <img src="images/<?= htmlspecialchars($car['make']) ?>.png" alt="<?= htmlspecialchars($car['make'] . ' ' . $car['model']) ?>" class="card-img-top">
                     <div class="card-body">
                         <h5 class="card-title"><?= htmlspecialchars($car['make'] . ' ' . $car['model']) ?></h5>
@@ -67,4 +72,12 @@ $categories = $carController->getCarCategories();
     <?php endforeach; ?>
 </div>
 
+
+
+
 <?php require_once './views/footer.php'; ?>
+
+
+
+
+

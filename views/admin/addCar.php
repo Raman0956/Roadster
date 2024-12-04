@@ -11,17 +11,13 @@ if (!isset($_SESSION['userID']) || $_SESSION['role'] !== 'Admin') {
 
 ?>
 
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Add New Car</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body>
 <div class="container mt-5">
+    
+<div class="d-flex justify-content-center">
+    <div class="col-md-8 col-lg-6 mx-auto">
     <h2 class="text-center">Add New Car</h2>
     <form method="POST" action="/roadsters/controllers/AdminController.php?action=addCar" class="needs-validation" novalidate>
-        <div class="mb-3">
+        <div class="mb">
             <label for="make" class="form-label">Make</label>
             <input type="text" id="make" name="make" class="form-control" required>
         </div>
@@ -61,8 +57,10 @@ if (!isset($_SESSION['userID']) || $_SESSION['role'] !== 'Admin') {
                 <option value="0">Not Available</option>
             </select>
         </div>
-        <button type="submit" class="btn btn-primary w-100">Add Car</button>
+        <button type="submit" class="btn-stndrd">Add Car</button>
     </form>
+    </div>
+</div>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
@@ -82,4 +80,3 @@ if (!isset($_SESSION['userID']) || $_SESSION['role'] !== 'Admin') {
     })();
 </script>
 </body>
-</html>
