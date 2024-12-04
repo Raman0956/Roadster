@@ -40,9 +40,6 @@ $role = $_SESSION['role'] ?? 'Guest'; // Get the user role (default is Guest)
                         <a class="nav-link" href="<?= $baseURL; ?>/views/admin/manageServices.php">Manage Services</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="<?= $baseURL; ?>/views/admin/reports.php">Reports</a>
-                    </li>
-                    <li class="nav-item">
                         <a class="nav-link" href="<?= $baseURL; ?>/views/authentication/logout.php">Logout (<?= htmlspecialchars($username) ?>)</a>
                     </li>
                 
