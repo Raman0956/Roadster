@@ -1,5 +1,5 @@
 <?php 
-session_start();
+header('Pragma: no-cache');
 require_once 'C:/xampp/htdocs/roadsters/models/CarModel.php';
 require_once 'C:/xampp/htdocs/roadsters/views/header.php';
 
@@ -112,4 +112,14 @@ $image_alt = 'Image: ' . htmlspecialchars($car['make']) . '.png';
             }, false);
         });
     })();
+
+    window.onload = function() {
+        // Prevent infinite reload loops
+        if (!sessionStorage.getItem('reloaded')) {
+            sessionStorage.setItem('reloaded', 'true');
+            location.reload();
+        } else {
+            sessionStorage.removeItem('reloaded');
+        }
+    };
 </script>

@@ -42,7 +42,7 @@ INSERT INTO TestDriveBooking (userID, carID, preferredDate, preferredTime, statu
 (1, 2, '2024-11-22', '16:00:00', 'Completed');
 
 -- Insert sample data into Inquiry table
-INSERT INTO Inquiry (userID, carID, serviceID, message, response, status) VALUES
-(1, 1, NULL, 'I am interested in leasing options for the Toyota Corolla.', 'We offer a 36-month lease option.', 'Answered'),
-(3, 2, 1, 'Can I book an oil change for my Ford F-150?', 'Yes, please book it via our service page.', 'Answered'),
-(1, 3, NULL, 'Is the Honda Civic still available?', NULL, 'Pending');
+    INSERT INTO Inquiry (userID, carID, serviceID, message, response, status) VALUES
+    (1, 1, NULL, 'I am interested in leasing options for the Toyota Corolla.', 'We offer a 36-month lease option.', 'Answered'),
+    (3, 2, 1, 'Can I book an oil change for my Ford F-150?', 'Yes, please book it via our service page.', 'Answered'),
+    (1, 3, NULL, 'Is the Honda Civic still available?', NULL, 'Pending');

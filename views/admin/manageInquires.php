@@ -219,7 +219,7 @@ $filteredNullInquiries = ($filterType === 'nullInquiries' && $statusFilter)
                         <option value="Answered">Answered</option>
                     </select>
                 </div>
-                <button type="submit" name="validInquiryUpdate" class="btn btn-primary">Update Selected</button>
+                <button type="submit" name="validInquiryUpdate" class="btn-stndrd">Update Selected</button>
             <?php endif; ?>
     </form>
     </div>
@@ -272,7 +272,7 @@ $filteredNullInquiries = ($filterType === 'nullInquiries' && $statusFilter)
                             <option value="Answered">Answered</option>
                         </select>
                     </div>
-                    <button type="submit" name="validInquiryUpdate" class="btn btn-primary">Update Selected</button>
+                    <button type="submit" name="validInquiryUpdate" class="btn-stndrd">Update Selected</button>
                 <?php endif; ?>
         </form>
         </div>
